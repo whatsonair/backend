@@ -24,3 +24,24 @@ def hit_fm():
 
 def russkoe_radio_ukraina():
     return {'station': '"Русское Радио" Украина', 'onair': i_ua('russkoe.radio')}
+
+def nrj():
+    return {'station': 'NRJ', 'onair': i_ua('nrj')}
+
+def kiss_fm():
+    return {'station': 'Kiss FM', 'onair': i_ua('kiss.fm')}
+
+def melodiya():
+    return {'station': 'Мелодия FM', 'onair': i_ua('melodiya')}
+
+def nashe_radio():
+    return {'station': 'Наше Радио', 'onair': i_ua('nashe.radio')}
+
+def uafm():
+    return {'station': 'UAFM', 'onair': i_ua('uafm.km.ua')}
+
+def keksfm():
+    return {'station': 'KEXXX FM', 'onair': i_ua('keksfm')}
+
+def radiopyatnica():
+    return {'station': 'Радио ПЯТНИЦА', 'onair': i_ua('radiopyatnica')}

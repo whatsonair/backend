@@ -14,7 +14,17 @@ class Command(BaseCommand):
         if NotificationRequest.objects.count() == 0:
             self.stdout.write('No notification requests')
 
-        stations = [scrappers.hit_fm, scrappers.russkoe_radio_ukraina]
+        stations = [
+            scrappers.hit_fm,
+            scrappers.russkoe_radio_ukraina,
+            scrappers.nrj,
+            scrappers.kiss_fm,
+            scrappers.melodiya,
+            scrappers.nashe_radio,
+            scrappers.uafm,
+            scrappers.keksfm,
+            scrappers.radiopyatnica,
+        ]
         for check_station in stations:
             air = check_station()
             self.stdout.write('{} DEBUG {}'.format(datetime.now(), air))
