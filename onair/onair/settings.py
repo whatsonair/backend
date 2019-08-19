@@ -4,7 +4,7 @@ import os
 
 
 class Settings(Configuration):
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = values.ListValue(['*'])
     AUTH_PASSWORD_VALIDATORS = [
         {
             'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -28,7 +28,7 @@ class Settings(Configuration):
         }
     }
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = True
+    DEBUG = values.BooleanValue(False)
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
@@ -42,6 +42,7 @@ class Settings(Configuration):
     LANGUAGE_CODE = 'en-us'
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
+        'whitenoise.middleware.WhiteNoiseMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,7 +53,10 @@ class Settings(Configuration):
     ROOT_URLCONF = 'onair.urls'
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = '1)#=9)t+e=374nx2i*p-o$a_b7%zvreb1ghmxo21+iyh&_*+a9'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATIC_URL = '/static/'
+    # http://whitenoise.evans.io/en/stable/
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
