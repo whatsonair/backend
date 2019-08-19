@@ -27,6 +27,7 @@ class Settings(Configuration):
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+    DOTENV = os.path.join(BASE_DIR, '.env')
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(False)
     INSTALLED_APPS = [
@@ -57,6 +58,7 @@ class Settings(Configuration):
     STATIC_URL = '/static/'
     # http://whitenoise.evans.io/en/stable/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    TELEGRAM_TOKEN = values.SecretValue()
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
