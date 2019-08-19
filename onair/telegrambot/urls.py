@@ -12,8 +12,8 @@ Including another URLconf
 """
 from django.urls import path
 
-from onair.telegrambot.views import telegram_webhook
+from . import views
 
 urlpatterns = [
-    path('webhook/', telegram_webhook),
+    path('webhook/', views.telegram_webhook),
 ]

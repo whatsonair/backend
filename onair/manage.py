@@ -2,15 +2,13 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import configurations
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'onair.settings')
 os.environ.setdefault('DJANGO_CONFIGURATION', 'Settings')
 
-# if sys.argv[0] and sys.argv[0].endswith('django_test_manage.py'):
-    # for PyCharm tests
 
-# import configurations
-# configurations.setup()
+configurations.setup()
 
 
 if __name__ == '__main__':
