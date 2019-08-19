@@ -1,4 +1,5 @@
 import json
+import textwrap
 import traceback
 
 import requests
@@ -20,6 +21,23 @@ def send_message(to, text):
             "text": text
         }
     )
+
+
+class Replier:
+    def __init__(self, to):
+        self.to = to
+
+    def send_supported_commands(self):
+        msg = textwrap.dedent("""\
+            Hi! :)
+            I can send you a message when your favorite songs are on air.
+            Just request notification with "/songonair michael jackson billie jean" and I will send notification any time billie jean is on air.
+            Cheers.
+            
+        """)
+        send_message(to=self.to,
+                     text=msg)
+
 
 
 @csrf_exempt
@@ -86,6 +104,7 @@ def telegram_webhook(request):
         message = body.get('message', {})  # Optional. New incoming message of any kind — text, photo, sticker, etc
         text = message.get('text', '')  # Optional. For text messages, the actual UTF-8 text of the message, 0-4096 characters.
         chat = message['chat']
+        replier = Replier(to=chat['id'])
         if chat['type'] != 'private':
             send_message(to=chat['id'], text="I can only work with private messages at the moment, sorry.")
             return JsonResponse({
@@ -95,7 +114,7 @@ def telegram_webhook(request):
 
         if not text \
                 or not text.startswith('/'):
-            send_message(to=chat['id'], text="/songonair <song name> - to get notifications about song on air")
+            replier.send_supported_commands()
             return JsonResponse({
                 "action": "no",
                 "reason": "command needed"
@@ -104,8 +123,7 @@ def telegram_webhook(request):
         if text.startswith('/songonair'):
             query = text.replace('/songonair', '').strip().lower()
             if not query:
-                send_message(to=chat['id'],
-                             text="/songonair <song name> - to get notifications about song on air")
+                replier.send_supported_commands()
                 return JsonResponse({
                     "action": "no",
                     "reason": "<song> parameter is missing"
@@ -142,8 +160,7 @@ def telegram_webhook(request):
                 "reason": "",
             })
         else:
-            send_message(to=chat['id'],
-                         text="/songonair <song name> - to get notifications about song on air")
+            replier.send_supported_commands()
             return JsonResponse({
                 "action": "no",
                 "reason": "unknown command: '{}'".format(text),
