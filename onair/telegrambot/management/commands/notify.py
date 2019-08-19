@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.management.base import BaseCommand, CommandError
 
 import scrappers
@@ -15,6 +17,7 @@ class Command(BaseCommand):
         stations = [scrappers.hit_fm, scrappers.russkoe_radio_ukraina]
         for check_station in stations:
             air = check_station()
+            self.stdout.write('{} DEBUG {}'.format(datetime.now(), air))
             if not air['onair']:
                 continue
 
@@ -22,7 +25,8 @@ class Command(BaseCommand):
                 if notif_request.request_text in air['onair'].lower():
                     send_message(to=notif_request.user.telegram_chat_id,
                                  text="'{}' is on air on radio '{}'!".format(air['onair'], air['station']))
-                    self.stdout.write("Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
+                    self.stdout.write("{ts} DEBUG Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
+                        ts=datetime.now(),
                         user=notif_request.user.telegram_chat_id,
                         song=air['onair'],
                         station=air['station'],
