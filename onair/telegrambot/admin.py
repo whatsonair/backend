@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
+from .models import User, NotificationRequest
 
 
 class UserAdmin(BaseUserAdmin):
@@ -10,4 +10,10 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
+class NotificationRequestAdmin(admin.ModelAdmin):
+    search_fields = ('request_text', 'user__username')
+    list_display = ('user', 'request_text',)
+
+
 admin.site.register(User, UserAdmin)
+admin.site.register(NotificationRequest, NotificationRequestAdmin)
