@@ -89,7 +89,7 @@ def telegram_webhook(request):
             })
 
         if text.startswith('/songonair'):
-            query = text.replace('/songonair', '').strip()
+            query = text.replace('/songonair', '').strip().lower()
             if not query:
                 return JsonResponse({
                     "action": "no",
