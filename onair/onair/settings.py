@@ -27,7 +27,7 @@ class Settings(Configuration):
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-    DOTENV = os.path.join(BASE_DIR, '.env')
+    # DOTENV = os.path.join(BASE_DIR, '.env')
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(False)
     INSTALLED_APPS = [
