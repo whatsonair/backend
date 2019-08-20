@@ -1,5 +1,5 @@
 beautifulsoup4
-django
+django==2.1
 -e git+https://github.com/martyzz1/django-configurations.git#egg=django-configurations
 requests
 whitenoise
