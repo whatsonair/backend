@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+from scrappers import I_UA
 from telegrambot.models import User, NotificationRequest
 
 
@@ -36,7 +37,7 @@ class Replier:
             - что бы получать оповещание когда песня в эфире, напишите /songonair песня
             - что бы получить список отслеживаемых песен, напишите /list
             - что бы перестать отслеживать песню: /stop песня
-            - что бы посмотреть список радио станций: /radios
+            - что бы посмотреть список радио станций и песен в эфире: /onair
             Вперед!
             
         """)
@@ -236,6 +237,20 @@ def telegram_webhook(request):
                         "action": "no",
                         "reason": "requested song not in the list"
                     })
+        elif text.startswith('/onair'):
+            radios = []
+            for radio_scrapper in I_UA:
+                try:
+                    radio = radio_scrapper()
+                    radios.append("{}: {}".format(radio['station'], radio['onair']))
+                except:
+                    # fix later
+                    pass
+            replier.send_message('\n'.join(radios))
+            return JsonResponse({
+                "action": "sent radios list",
+                "reason": "",
+            })
 
         else:
             replier.send_supported_commands()
