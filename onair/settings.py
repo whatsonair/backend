@@ -21,6 +21,7 @@ class Settings(Configuration):
     ]
     AUTH_USER_MODEL = 'telegrambot.User'
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    CACHES = values.CacheURLValue('locmem://')
     DATABASES = values.DatabaseURLValue('sqlite:///db.sqlite3')
     # DOTENV = os.path.join(BASE_DIR, '.env')
     # SECURITY WARNING: don't run with debug turned on in production!
@@ -46,6 +47,7 @@ class Settings(Configuration):
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
+    PREVENT_NOTIFICATION_REPEAT_TIMEOUT = values.PositiveIntegerValue(5 * 60)  # 5 mins
     ROOT_URLCONF = 'onair.urls'
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = '1)#=9)t+e=374nx2i*p-o$a_b7%zvreb1ghmxo21+iyh&_*+a9'

@@ -16,6 +16,7 @@ beautifulsoup4 = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
 django-dotenv = "*"
+django-cache-url = "*"
 
 [requires]
 python_version = "3.6"

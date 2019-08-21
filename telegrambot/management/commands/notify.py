@@ -1,8 +1,10 @@
 from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
+from django.core.cache import cache
 
 import scrappers
+import settings
 from telegrambot.models import NotificationRequest
 from telegrambot.views import send_message
 
@@ -21,9 +23,12 @@ class Command(BaseCommand):
                 continue
 
             for notif_request in NotificationRequest.objects.all():
-                if notif_request.request_text in air['onair'].lower():
+                cache_key = "{}{}-{}".format(air['station'], air['onair'], notif_request.user_id)
+                if notif_request.request_text in air['onair'].lower() \
+                        and not cache.get(cache_key):
                     send_message(to=notif_request.user.telegram_chat_id,
                                  text="'{radio}': '{song}'".format(song=air['onair'], radio=air['station']))
+                    cache.touch(cache_key, settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
                     self.stdout.write("{ts} DEBUG Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                         ts=datetime.now(),
                         user=notif_request.user.telegram_chat_id,
