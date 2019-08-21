@@ -29,7 +29,7 @@ class Settings(Configuration):
     }
     # DOTENV = os.path.join(BASE_DIR, '.env')
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = values.BooleanValue(False)
+    DEBUG = values.BooleanValue(True)
     INSTALLED_APPS = [
         'django.contrib.admin',
         'django.contrib.auth',
