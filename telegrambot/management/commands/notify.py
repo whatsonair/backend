@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 if notif_request.request_text in air['onair'].lower() \
                         and not cache.get(cache_key):
                     send_message(to=notif_request.user.telegram_chat_id,
-                                 text="'{radio}': '{song}'".format(song=air['onair'], radio=air['station']))
+                                 text="{radio}: {song}".format(song=air['onair'], radio=air['station']))
                     cache.set(cache_key, 'notified', settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
                     self.stdout.write("{ts} DEBUG Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                         ts=datetime.now(),
