@@ -189,11 +189,12 @@ def telegram_webhook(request):
             notifs = []
             for notif in NotificationRequest.objects.filter(user=user).order_by('id'):
                 notifs.append(notif.request_text)
-                replier.send_notifications_list(notifs)
-                return JsonResponse({
-                    "action": "sent notifications list",
-                    "reason": "",
-                })
+
+            replier.send_notifications_list(notifs)
+            return JsonResponse({
+                "action": "sent notifications list",
+                "reason": "",
+            })
         else:
             replier.send_supported_commands()
             return JsonResponse({
