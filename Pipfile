@@ -15,6 +15,7 @@ whitenoise = "*"
 beautifulsoup4 = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
+django-dotenv = "*"
 
 [requires]
 python_version = "3.6"
