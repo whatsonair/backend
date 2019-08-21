@@ -17,6 +17,7 @@ dj-database-url = "*"
 psycopg2-binary = "*"
 django-dotenv = "*"
 django-cache-url = "*"
+django-redis = "*"
 
 [requires]
 python_version = "3.6"
