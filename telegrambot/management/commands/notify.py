@@ -22,7 +22,7 @@ class Command(BaseCommand):
             if not air['onair']:
                 continue
 
-            for notif_request in NotificationRequest.objects.all():
+            for notif_request in NotificationRequest.objects.filter(user__is_active=True):
                 cache_key = "{}{}-{}".format(air['station'], air['onair'], notif_request.user_id)
                 if notif_request.request_text in air['onair'].lower() \
                         and not cache.get(cache_key):
