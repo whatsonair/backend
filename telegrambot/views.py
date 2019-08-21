@@ -5,7 +5,7 @@ import traceback
 import requests
 from django.conf import settings
 from django.db import transaction
-from django.http import HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -38,6 +38,17 @@ class Replier:
         send_message(to=self.to,
                      text=msg)
 
+    def send_list_empty(self):
+        send_message(to=self.to, text='Нет нотификаций')
+
+    def send_notifications_list(self, notifs):
+        if not notifs:
+            self.send_list_empty()
+            return
+        lines = []
+        for i, text in enumerate(notifs, 1):
+            lines.append("{}. {}".format(i, text))
+        send_message(to=self.to, text='\n'.join(lines))
 
 
 @csrf_exempt
@@ -159,6 +170,30 @@ def telegram_webhook(request):
                 "action": "NotificationRequest stored",
                 "reason": "",
             })
+        elif text.startswith('/list'):
+            user, created = User.objects.get_or_create(
+                telegram_chat_id=chat['id'],
+                defaults=dict(
+                    username=chat.get('username', chat['id']),
+                    first_name=chat.get('first_name', ''),
+                    last_name=chat.get('last_name', ''),
+                ),
+            )
+            if created:
+                replier.send_list_empty()
+                replier.send_supported_commands()
+                return JsonResponse({
+                    "action": "sent empty notifications list",
+                    "reason": "no notifications for the user",
+                })
+            notifs = []
+            for notif in NotificationRequest.objects.filter(user=user).order_by('id'):
+                notifs.append(notif.request_text)
+                replier.send_notifications_list(notifs)
+                return JsonResponse({
+                    "action": "sent notifications list",
+                    "reason": "",
+                })
         else:
             replier.send_supported_commands()
             return JsonResponse({
