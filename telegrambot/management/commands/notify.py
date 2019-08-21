@@ -1,3 +1,4 @@
+from base64 import b64encode
 from datetime import datetime
 
 from django.core.management.base import BaseCommand, CommandError
@@ -23,7 +24,8 @@ class Command(BaseCommand):
                 continue
 
             for notif_request in NotificationRequest.objects.filter(user__is_active=True):
-                cache_key = "{}{}-{}".format(air['station'], air['onair'], notif_request.user_id)
+                cache_key = b64encode(
+                    "{}{}-{}".format(air['station'], air['onair'], notif_request.user_id).encode('utf-8'))
                 if notif_request.request_text in air['onair'].lower() \
                         and not cache.get(cache_key):
                     send_message(to=notif_request.user.telegram_chat_id,
