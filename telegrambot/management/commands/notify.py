@@ -28,7 +28,7 @@ class Command(BaseCommand):
                         and not cache.get(cache_key):
                     send_message(to=notif_request.user.telegram_chat_id,
                                  text="'{radio}': '{song}'".format(song=air['onair'], radio=air['station']))
-                    cache.touch(cache_key, settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
+                    cache.set(cache_key, 'notified', settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
                     self.stdout.write("{ts} DEBUG Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                         ts=datetime.now(),
                         user=notif_request.user.telegram_chat_id,
