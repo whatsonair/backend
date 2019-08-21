@@ -13,6 +13,7 @@ class UserAdmin(BaseUserAdmin):
 class NotificationRequestAdmin(admin.ModelAdmin):
     search_fields = ('request_text', 'user__username')
     list_display = ('user', 'request_text',)
+    list_filter = ('user',)
 
 
 admin.site.register(User, UserAdmin)
