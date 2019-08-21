@@ -27,19 +27,25 @@ class Replier:
     def __init__(self, to):
         self.to = to
 
+    def send_message(self, text):
+        send_message(to=self.to, text=text)
+
     def send_supported_commands(self):
         msg = textwrap.dedent("""\
-            Hi! :)
-            I can send you a message when your favorite songs are on air.
-            Just request notification with "/songonair michael jackson billie jean" and I will send notification any time billie jean is on air.
-            Cheers.
+            Привет!
+            - что бы получать оповещание когда песня в эфире, напишите /songonair песня
+            - что бы получить список отслеживаемых песен, напишите /list
+            - что бы перестать отслеживать песню: /stop песня
+            - что бы посмотреть список радио станций: /radios
+            Вперед!
             
         """)
         send_message(to=self.to,
                      text=msg)
 
     def send_list_empty(self):
-        send_message(to=self.to, text='Нет нотификаций')
+        send_message(to=self.to, text='Вы еще не отслеживаете песни в эфире. '
+                                      'Используйте /songonair песня, что бы начать отслеживать.')
 
     def send_notifications_list(self, notifs):
         if not notifs:
@@ -195,6 +201,42 @@ def telegram_webhook(request):
                 "action": "sent notifications list",
                 "reason": "",
             })
+        elif text.startswith('/stop'):
+            query = text.replace('/stop', '').strip().lower()
+            if not query:
+                replier.send_message("Нужно написать /stop песня. "
+                                     "Песня - как написано в /list (без порядкового номера).")
+                return JsonResponse({
+                    "action": "no",
+                    "reason": "<song> parameter is missing"
+                })
+            with transaction.atomic():
+                user, created = User.objects.get_or_create(
+                    telegram_chat_id=chat['id'],
+                    defaults=dict(
+                        username=chat.get('username', chat['id']),
+                        first_name=chat.get('first_name', ''),
+                        last_name=chat.get('last_name', ''),
+                    ),
+                )
+
+                try:
+                    to_remove = NotificationRequest.objects.get(user=user, request_text=query)
+                    to_remove.delete()
+                    replier.send_message('"{}" удалена из списка отслеживания'.format(query))
+                    return JsonResponse({
+                        "action": "removed notification request",
+                        "reason": ""
+                    })
+
+                except NotificationRequest.DoesNotExist:
+                    replier.send_message('Вы еще не отслеживаете "{}". '
+                                         '/list что бы получить список отслеживаемых песен'.format(query))
+                    return JsonResponse({
+                        "action": "no",
+                        "reason": "requested song not in the list"
+                    })
+
         else:
             replier.send_supported_commands()
             return JsonResponse({
