@@ -23,7 +23,7 @@ class Command(BaseCommand):
             for notif_request in NotificationRequest.objects.all():
                 if notif_request.request_text in air['onair'].lower():
                     send_message(to=notif_request.user.telegram_chat_id,
-                                 text="'{}' is on air on radio '{}'!".format(air['onair'], air['station']))
+                                 text="'{radio}': '{song}'".format(song=air['onair'], radio=air['station']))
                     self.stdout.write("{ts} DEBUG Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                         ts=datetime.now(),
                         user=notif_request.user.telegram_chat_id,
@@ -31,4 +31,3 @@ class Command(BaseCommand):
                         station=air['station'],
                         request=notif_request.request_text
                     ))
-
