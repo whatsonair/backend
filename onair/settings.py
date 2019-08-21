@@ -21,12 +21,7 @@ class Settings(Configuration):
     ]
     AUTH_USER_MODEL = 'telegrambot.User'
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+    DATABASES = values.DatabaseURLValue('sqlite:///db.sqlite3')
     # DOTENV = os.path.join(BASE_DIR, '.env')
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(True)
@@ -55,7 +50,7 @@ class Settings(Configuration):
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = '1)#=9)t+e=374nx2i*p-o$a_b7%zvreb1ghmxo21+iyh&_*+a9'
     STATIC_ROOT = values.Value(os.path.join(BASE_DIR, '..', 'staticfiles'))
-    STATIC_URL = '/static/'
+    STATIC_URL = '/assets/'
     # http://whitenoise.evans.io/en/stable/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     TELEGRAM_TOKEN = values.SecretValue()
