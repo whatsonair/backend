@@ -1,0 +1,738 @@
+[
+{
+  "model": "telegrambot.radiostation",
+  "pk": 1,
+  "fields": {
+    "name": "\u0411\u0443\u043a\u043e\u0432\u0438\u043d\u0441\u044c\u043a\u0430 \u0425\u0432\u0438\u043b\u044f",
+    "url": "http://100fm.cv.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 2,
+  "fields": {
+    "name": "\u041a\u0440\u0430\u0457\u043d\u0430 \u0424\u041c",
+    "url": "http://krainafm.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 3,
+  "fields": {
+    "name": "\u0420\u0443\u0441\u0441\u043a\u043e\u0435 \u0420\u0430\u0434\u0438\u043e \u0423\u043a\u0440\u0430\u0438\u043d\u0430",
+    "url": "https://www.rusradio.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 4,
+  "fields": {
+    "name": "109FM",
+    "url": "http://www.109fm.net/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 5,
+  "fields": {
+    "name": "49 \u043f\u0430\u0440\u0430\u043b\u043b\u0435\u043b\u044c",
+    "url": "http://49parallel.in.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 6,
+  "fields": {
+    "name": "7G",
+    "url": "https://simg.info/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 7,
+  "fields": {
+    "name": "ABN Radio",
+    "url": "http://radio.andrew-lviv.net"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 8,
+  "fields": {
+    "name": "AFC Radio",
+    "url": "http://afc-radio.com/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 9,
+  "fields": {
+    "name": "BiG Radio",
+    "url": "http://bigradio.com.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 10,
+  "fields": {
+    "name": "DJ FM",
+    "url": "http://djfm.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 11,
+  "fields": {
+    "name": "DJsRadio",
+    "url": "http://djsradio.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 12,
+  "fields": {
+    "name": "D\u0423\u0416\u0415 radio",
+    "url": "http://www.duzhe.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 13,
+  "fields": {
+    "name": "FM \u0413\u0430\u043b\u0438\u0447\u0438\u043d\u0430",
+    "url": "http://www.galychyna.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 14,
+  "fields": {
+    "name": "KEXXX FM",
+    "url": "http://keksfm.kiev.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 15,
+  "fields": {
+    "name": "Kiss FM",
+    "url": "http://www.kissfm.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 16,
+  "fields": {
+    "name": "La Femme",
+    "url": "http://lafemme.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 17,
+  "fields": {
+    "name": "Lounge Fm",
+    "url": "http://loungefm.com.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 18,
+  "fields": {
+    "name": "Lounge Fm Acoustic",
+    "url": "http://loungefm.com.ua/acoustic.php"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 19,
+  "fields": {
+    "name": "Lounge FM Chill Out",
+    "url": "http://loungefm.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 20,
+  "fields": {
+    "name": "Lounge Fm Terrace",
+    "url": "http://loungefm.com.ua/terrace.php"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 21,
+  "fields": {
+    "name": "Lounge Project Radio",
+    "url": "http://loungeproject.pro"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 22,
+  "fields": {
+    "name": "Metal Voice \u0420\u0430\u0434\u0438\u043e",
+    "url": "http://www.metalvoice.net/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 23,
+  "fields": {
+    "name": "MFM Station",
+    "url": "http://www.mfm.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 24,
+  "fields": {
+    "name": "MiX FM",
+    "url": "http://www.mixfm.com.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 25,
+  "fields": {
+    "name": "MORE.FM",
+    "url": "http://more.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 26,
+  "fields": {
+    "name": "Nostalgie 99 FM",
+    "url": "http://nostalgie.kiev.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 27,
+  "fields": {
+    "name": "NRJ \u0423\u043a\u0440\u0430\u0438\u043d\u0430 (ex Europa plus)",
+    "url": "http://nrj.in.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 28,
+  "fields": {
+    "name": "Old Fashioned Radio",
+    "url": "http://ofr.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 29,
+  "fields": {
+    "name": "ORadio",
+    "url": "http://oradio.in.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 30,
+  "fields": {
+    "name": "Party Hit Radio",
+    "url": "http://www.partyhitradio.com/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 31,
+  "fields": {
+    "name": "PsyRadio",
+    "url": "http://psyradio.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 32,
+  "fields": {
+    "name": "Radio Active",
+    "url": "http://radio-active.top"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 33,
+  "fields": {
+    "name": "Radio Metal",
+    "url": "http://www.radio-metal.live"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 34,
+  "fields": {
+    "name": "Radio ROKS",
+    "url": "http://www.radioroks.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 35,
+  "fields": {
+    "name": "Radio \u00abRazom\u00bb",
+    "url": "http://razom.media/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 36,
+  "fields": {
+    "name": "RadioEx",
+    "url": "http://radioex.in.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 37,
+  "fields": {
+    "name": "RadioKids.Online",
+    "url": "https://www.radiokids.online/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 38,
+  "fields": {
+    "name": "Rock FM Ukraine",
+    "url": "http://www.rockfm.online"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 39,
+  "fields": {
+    "name": "RTI",
+    "url": "http://www.rti.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 40,
+  "fields": {
+    "name": "SunFM Ukraine",
+    "url": "http://sunfm.com.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 41,
+  "fields": {
+    "name": "SVOBODA.FM",
+    "url": "http://svoboda.fm"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 42,
+  "fields": {
+    "name": "Trance Century Radio",
+    "url": "http://trancecentury.com/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 43,
+  "fields": {
+    "name": "TRANCE IS STAR",
+    "url": "http://tranceisstar.com/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 44,
+  "fields": {
+    "name": "UAFM",
+    "url": "http://uafm.org"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 45,
+  "fields": {
+    "name": "\u0410\u0432\u0442\u043e\u0440\u0430\u0434\u0438\u043e",
+    "url": "http://www.avtoradio.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 46,
+  "fields": {
+    "name": "\u0411\u0438\u0437\u043d\u0435\u0441 \u0420\u0430\u0434\u0438\u043e",
+    "url": "http://bfm.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 47,
+  "fields": {
+    "name": "\u0411\u043e\u0433\u0443\u0441\u043b\u0430\u0432 \u0424\u041c",
+    "url": "https://boguslav.media/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 48,
+  "fields": {
+    "name": "\u0411\u0443\u0441\u044c\u043a\u0435 \u0420\u0430\u0434\u0438\u043e",
+    "url": "http://www.buskeradio.in.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 49,
+  "fields": {
+    "name": "\u0412\u0433\u043e\u043b\u043e\u0441 FM",
+    "url": "http://vgolos.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 50,
+  "fields": {
+    "name": "\u0412\u0421\u0420\u0423",
+    "url": "http://www.nrcu.gov.ua/ua/1478/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 51,
+  "fields": {
+    "name": "\u0412\u0442\u043e\u0440\u043e\u0439 \u043a\u0430\u043d\u0430\u043b \"\u041b\u0443\u0447\"",
+    "url": "http://promin.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 52,
+  "fields": {
+    "name": "\u0413\u043e\u043b\u043e\u0441 \u0421\u0442\u043e\u043b\u0438\u0446\u044b",
+    "url": "http://newsradio.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 53,
+  "fields": {
+    "name": "\u0414\u0436\u0435\u043c \u0424\u041c",
+    "url": "http://www.jamfm.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 54,
+  "fields": {
+    "name": "\u0415\u0432\u0440\u043e\u043f\u0430 \u041f\u043b\u044e\u0441 \u0414\u043d\u0435\u043f\u0440\u043e\u043f\u0435\u0442\u0440\u043e\u0432\u0441\u043a",
+    "url": "http://europaplus.dp.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 55,
+  "fields": {
+    "name": "\u0416\u0438\u0442\u043e\u043c\u0438\u0440\u0441\u043a\u0430\u044f \u0432\u043e\u043b\u043d\u0430",
+    "url": "http://103fm.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 56,
+  "fields": {
+    "name": "\u0417\u043e\u043b\u043e\u0447\u0438\u0432 \u0424\u041c",
+    "url": "http://zolochiv.fm"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 57,
+  "fields": {
+    "name": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u043e\u0440 FM 107,3",
+    "url": "http://informator.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 58,
+  "fields": {
+    "name": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0442\u043e\u0440 \u0420\u043e\u043a",
+    "url": "http://www.inf.fm"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 59,
+  "fields": {
+    "name": "\u041b\u0443\u0446\u043a\u043e\u0435 \u0420\u0430\u0434\u0438\u043e",
+    "url": "http://lutske.net/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 60,
+  "fields": {
+    "name": "\u041b\u044c\u0432\u043e\u0432\u0441\u043a\u0430\u044f \u0412\u043e\u043b\u043d\u0430",
+    "url": "http://www.lwr.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 61,
+  "fields": {
+    "name": "\u041b\u044e\u043a\u0441 \u0424\u041c",
+    "url": "http://lux.fm"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 62,
+  "fields": {
+    "name": "\u041c\u0430\u0440\u0438\u0443\u043f\u043e\u043b\u044c FM",
+    "url": "http://mrpl.city/radio.html"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 63,
+  "fields": {
+    "name": "\u041c\u0435\u043b\u043e\u0434\u0438\u044f FM",
+    "url": "http://www.radiomelodia.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 64,
+  "fields": {
+    "name": "\u041d\u0430\u0448\u0435 \u0420\u0430\u0434\u0438\u043e",
+    "url": "http://nasheradio.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 65,
+  "fields": {
+    "name": "\u041e\u0434\u0435\u0441\u0441\u0430-\u041c\u0430\u043c\u0430",
+    "url": "http://www.mama.odessa.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 66,
+  "fields": {
+    "name": "\u041f\u0435\u0440\u0432\u044b\u0439 \u043a\u0430\u043d\u0430\u043b",
+    "url": "http://www.nrcu.gov.ua/ua/1478/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 67,
+  "fields": {
+    "name": "\u041f\u0443\u043b\u044c\u0441 FM",
+    "url": "http://pulsfm.lg.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 68,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e Relax",
+    "url": "http://www.radiorelax.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 69,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e VTSU",
+    "url": "http://vtsu.org.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 70,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u0410\u0440\u0438\u0441\u0442\u043e\u043a\u0440\u0430\u0442\u044b",
+    "url": "http://aristocrats.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 71,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u0411\u0430\u0440\u0430\u0431\u0430\u043d",
+    "url": "http://radiobaraban.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 72,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u0412\u0435\u0441\u0442\u0438",
+    "url": "https://radio.vesti-ukr.com/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 73,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u0412\u0435\u0447\u0435\u0440\u043d\u0438\u0439 \u0411\u0440\u0438\u0437",
+    "url": "http://relaxbreeze.com"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 74,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u041a\u0438\u0435\u0432 98FM",
+    "url": "http://www.radio.kiev.fm"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 75,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u041c\u0410\u041a\u0421\u0418\u041c\u0423\u041c",
+    "url": "https://maximum.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 76,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u041d\u0412",
+    "url": "https://radio.nv.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 77,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u041f\u042f\u0422\u041d\u0418\u0426\u0410",
+    "url": "http://radiopyatnica.com.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 78,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0438\u043e \u0421\u041f\u041e\u0420\u0422",
+    "url": "http://radiosport.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 79,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0456\u043e \u0437 \u043a\u0440\u0438\u0457\u0432\u043a\u0438",
+    "url": "http://mjoy.com.ua/radio/rzk"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 80,
+  "fields": {
+    "name": "\u0420\u0430\u0434\u0456\u043e \u00ab\u041a\u0412\u041f\u0423\u0411\u0414\u00bb",
+    "url": "http://kvpubd.com"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 81,
+  "fields": {
+    "name": "\u0420\u0435\u043d\u0435\u0441\u0441\u0430\u043d\u0441",
+    "url": "http://jazzfm.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 82,
+  "fields": {
+    "name": "\u0420\u043e\u043a\u0420\u0430\u0434\u0438\u043e UA",
+    "url": "http://rockradio.com.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 83,
+  "fields": {
+    "name": "\u0421\u0442\u0438\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0434\u0438\u043e \"\u041f\u0435\u0440\u0435\u0446 FM\"",
+    "url": "http://stilnoe.fm/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 84,
+  "fields": {
+    "name": "\u0422\u0440\u0435\u0442\u0438\u0439 \u043a\u0430\u043d\u0430\u043b \"\u041a\u0443\u043b\u044c\u0442\u0443\u0440\u0430\"",
+    "url": "http://www.nrcu.gov.ua/ua/1478/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 85,
+  "fields": {
+    "name": "\u0423\u043a\u0440\u0430\u0438\u043d\u0441\u043a\u0430\u044f \u0440\u0430\u0434\u0438\u043e \"\u0427\u0435\u0440\u043d\u0438\u0433\u043e\u0432\u0441\u043a\u0430\u044f \u0432\u043e\u043b\u043d\u0430\"",
+    "url": "http://cn.suspilne.media"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 86,
+  "fields": {
+    "name": "\u0424\u0430\u043d\u0442\u043e\u043c \u0424\u043c",
+    "url": "https://radiofantom.com"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 87,
+  "fields": {
+    "name": "\u0425\u0456\u0442 FM",
+    "url": "http://www.hitfm.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 88,
+  "fields": {
+    "name": "\u0428\u0430\u043d\u0441\u043e\u043d",
+    "url": "http://shanson.ua/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 89,
+  "fields": {
+    "name": "\u042d\u043a\u043e-\u0420\u0430\u0434\u0438\u043e",
+    "url": "http://ekoradio.com.ua"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 90,
+  "fields": {
+    "name": "\u042f\u0440\u043a\u043e\u0435 \u0440\u0430\u0434\u0438\u043e",
+    "url": "http://www.vobu.com.ua/ukr/radio"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 91,
+  "fields": {
+    "name": "\u0410\u0437\u043e\u0432\u0441\u043a\u0430\u044f \u0441\u0442\u043e\u043b\u0438\u0446\u0430",
+    "url": "http://azov-capital.info/"
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 92,
+  "fields": {
+    "name": "\u0413\u0440\u043e\u043c\u0430\u0434\u0441\u044c\u043a\u0435 \u0440\u0430\u0434\u0456\u043e",
+    "url": "http://hromadskeradio.org/"
+  }
+}
+]

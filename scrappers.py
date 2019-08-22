@@ -17,6 +17,11 @@ def i_ua(link):
     except:
         log.exception("Unexpected error while scapping i.ua {}:".format(link))
 
+
+def nrj():
+    return {'station': '"Русское Радио" Украина', 'onair': i_ua('russkoe.radio')}
+
+
 I_UA = [
     lambda: {'station': '"Русское Радио" Украина', 'onair': i_ua('russkoe.radio')},
     lambda: {'station': 'NRJ', 'onair': i_ua('nrj')},
