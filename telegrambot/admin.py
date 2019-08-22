@@ -19,9 +19,8 @@ class NotificationRequestAdmin(admin.ModelAdmin):
 
 class ScrapperInline(admin.TabularInline):
     model = Scrapper
-    fields = ('python_path', 'priority', 'used', 'success_rate')
+    fields = ('python_path', 'used', 'success_rate')
     readonly_fields = ('used', 'success_rate',)
-    ordering = ('priority',)
     extra = True
 
 
@@ -36,7 +35,7 @@ class RadioStationAdmin(admin.ModelAdmin):
 
 class ScrapperAdmin(admin.ModelAdmin):
     search_fields = ('radio__name', 'python_path')
-    list_display = ('radio', 'python_path', 'priority', 'used', 'success_rate',)
+    list_display = ('radio', 'python_path', 'used', 'success_rate',)
     actions = ['trigger']
 
     def trigger(self, request, queryset):

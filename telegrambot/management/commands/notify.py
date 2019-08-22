@@ -5,6 +5,7 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.core.cache import cache
 from django.conf import settings
+from django.db.models import F
 
 from telegrambot.models import NotificationRequest, Scrapper
 from telegrambot.views import send_message
@@ -27,9 +28,15 @@ class Command(BaseCommand):
                 continue
 
             air = check_station()
+            scrapper.used = F('used') + 1
+            scrapper.save()
             self.stdout.write('{} DEBUG {}: {}'.format(datetime.now(), scrapper.radio.name, air))
             if not air:
                 continue
+
+            scrapper.refresh_from_db()
+            scrapper.success = F('success') + 1
+            scrapper.save()
 
             for notif_request in NotificationRequest.objects.filter(user__is_active=True):
                 cache_key = b64encode(

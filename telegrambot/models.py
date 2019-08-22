@@ -42,9 +42,11 @@ def validate_exists(python_path):
 class Scrapper(models.Model):
     radio = models.ForeignKey(RadioStation, on_delete=models.CASCADE)
     python_path = models.CharField(max_length=1000, blank=False, validators=[validate_exists])
-    priority = models.IntegerField(unique=True)
     used = models.IntegerField(default=0)
     success = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ('radio', 'python_path')
 
     def __str__(self):
         return self.python_path

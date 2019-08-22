@@ -78,5 +78,5 @@ def radio_z_kriyivki():
 def rock_radio_ua():
     return radio_i_ua('rockradio')
 
-def fit_fm():
+def hit_fm():
     return radio_i_ua('hit.fm')
