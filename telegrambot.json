@@ -743,7 +743,7 @@
   "model": "telegrambot.radiostation",
   "pk": 75,
   "fields": {
-    "name": "\u0420\u0430\u0434\u0438\u043e \u041c\u0410\u041a\u0421\u0418\u041c\u0423\u041c",
+    "name": "\u041c\u0410\u041a\u0421\u0418\u041c\u0423\u041c ONAIR",
     "url": "https://maximum.fm/",
     "monitor": true
   }
@@ -899,6 +899,42 @@
     "name": "\u0413\u0440\u043e\u043c\u0430\u0434\u0441\u044c\u043a\u0435 \u0440\u0430\u0434\u0456\u043e",
     "url": "http://hromadskeradio.org/",
     "monitor": false
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 93,
+  "fields": {
+    "name": "\u041c\u0430\u043a\u0441\u0438\u043c\u0443\u043c \u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0435",
+    "url": "https://maximum.fm/maksimum-ukrayinske_station15",
+    "monitor": true
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 94,
+  "fields": {
+    "name": "\u041c\u0430\u043a\u0441\u0438\u043c\u0443\u043c \u0425\u0456\u0442\u0456\u0432",
+    "url": "https://maximum.fm/maksimum-hitiv_station11",
+    "monitor": true
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 95,
+  "fields": {
+    "name": "\u041c\u0430\u043a\u0441\u0438\u043c\u0443\u043c \u0420\u043e\u043a",
+    "url": "https://maximum.fm/maksimum-rok_station16",
+    "monitor": true
+  }
+},
+{
+  "model": "telegrambot.radiostation",
+  "pk": 96,
+  "fields": {
+    "name": "\u0421\u0443\u043f\u0435\u0440 \u0434\u0438\u0441\u043a\u043e\u0442\u0435\u043a\u0430 90-\u0445",
+    "url": "https://maximum.fm/super-diskoteka-90-h_station29",
+    "monitor": true
   }
 },
 {
@@ -1107,6 +1143,116 @@
   "fields": {
     "radio": 82,
     "python_path": "scrappers.rock_radio_ua",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 23,
+  "fields": {
+    "radio": 88,
+    "python_path": "scrappers.shanson",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 24,
+  "fields": {
+    "radio": 17,
+    "python_path": "scrappers.loungefm",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 25,
+  "fields": {
+    "radio": 53,
+    "python_path": "scrappers.jamfm",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 26,
+  "fields": {
+    "radio": 45,
+    "python_path": "scrappers.avtoradio",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 27,
+  "fields": {
+    "radio": 19,
+    "python_path": "scrappers.loungefm_chillout",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 28,
+  "fields": {
+    "radio": 68,
+    "python_path": "scrappers.radiorelax",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 29,
+  "fields": {
+    "radio": 75,
+    "python_path": "scrappers.maximum_onair",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 30,
+  "fields": {
+    "radio": 93,
+    "python_path": "scrappers.maximum_ukrainian",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 31,
+  "fields": {
+    "radio": 94,
+    "python_path": "scrappers.maximum_hitiv",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 32,
+  "fields": {
+    "radio": 95,
+    "python_path": "scrappers.maximum_rock",
+    "used": 0,
+    "success": 0
+  }
+},
+{
+  "model": "telegrambot.scrapper",
+  "pk": 33,
+  "fields": {
+    "radio": 96,
+    "python_path": "scrappers.super_diskoteka_90s",
     "used": 0,
     "success": 0
   }
