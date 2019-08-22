@@ -1,12 +1,12 @@
+import importlib
 from base64 import b64encode
 from datetime import datetime
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.core.cache import cache
 from django.conf import settings
 
-import scrappers
-from telegrambot.models import NotificationRequest
+from telegrambot.models import NotificationRequest, Scrapper
 from telegrambot.views import send_message
 
 
@@ -17,24 +17,33 @@ class Command(BaseCommand):
         if NotificationRequest.objects.count() == 0:
             self.stdout.write('No notification requests')
 
-        for check_station in scrappers.I_UA:
+        for scrapper in Scrapper.objects.filter(radio__monitor=True):
+            try:
+                function_string = scrapper.python_path
+                mod_name, func_name = function_string.rsplit('.', 1)
+                mod = importlib.import_module(mod_name)
+                check_station = getattr(mod, func_name)
+            except Exception as exc:
+                continue
+
             air = check_station()
-            self.stdout.write('{} DEBUG {}'.format(datetime.now(), air))
-            if not air['onair']:
+            self.stdout.write('{} DEBUG {}: {}'.format(datetime.now(), scrapper.radio.name, air))
+            if not air:
                 continue
 
             for notif_request in NotificationRequest.objects.filter(user__is_active=True):
                 cache_key = b64encode(
-                    "{}{}-{}".format(air['station'], air['onair'], notif_request.user_id).encode('utf-8'))
-                if notif_request.request_text in air['onair'].lower() \
+                    "{}{}-{}".format(scrapper.radio.name, air, notif_request.user_id).encode('utf-8'))
+                if notif_request.request_text in air.lower() \
                         and not cache.get(cache_key):
                     send_message(to=notif_request.user.telegram_chat_id,
-                                 text="{radio}: {song}".format(song=air['onair'], radio=air['station']))
+                                 text="{radio}: {song}".format(song=air, radio=scrapper.radio.name))
                     cache.set(cache_key, 'notified', settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
+
                     self.stdout.write("{ts} DEBUG Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                         ts=datetime.now(),
                         user=notif_request.user.telegram_chat_id,
-                        song=air['onair'],
-                        station=air['station'],
+                        song=air,
+                        station=scrapper.radio.name,
                         request=notif_request.request_text
                     ))

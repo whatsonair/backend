@@ -26,11 +26,12 @@ class ScrapperInline(admin.TabularInline):
 
 
 class RadioStationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'monitor')
+    list_display = ('name', 'url', 'monitor', 'n_scrappers')
     list_filter = ('monitor',)
     inlines = [
         ScrapperInline,
     ]
+    search_fields = ('name', 'url')
 
 
 class ScrapperAdmin(admin.ModelAdmin):

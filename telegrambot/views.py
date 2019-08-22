@@ -10,8 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
-from scrappers import I_UA
-from telegrambot.models import User, NotificationRequest
+from telegrambot.models import User, NotificationRequest, RadioStation
 
 
 def send_message(to, text):
@@ -239,13 +238,9 @@ def telegram_webhook(request):
                     })
         elif text.startswith('/onair'):
             radios = []
-            for radio_scrapper in I_UA:
-                try:
-                    radio = radio_scrapper()
-                    radios.append("{}: {}".format(radio['station'], radio['onair']))
-                except:
-                    # fix later
-                    pass
+            for i, radio in enumerate(RadioStation.objects.filter(monitor=True), 1):
+                radios.append("{}: {}".format(i, radio.name))
+
             replier.send_message('\n'.join(radios))
             return JsonResponse({
                 "action": "sent radios list",

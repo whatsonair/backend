@@ -1,3 +1,6 @@
+import importlib
+
+from django.core.exceptions import ValidationError
 from django.db import models
 
 # Create your models here.
@@ -21,10 +24,24 @@ class RadioStation(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def n_scrappers(self):
+        return str(self.scrapper_set.count())
+
+
+def validate_exists(python_path):
+    try:
+        function_string = python_path
+        mod_name, func_name = function_string.rsplit('.', 1)
+        mod = importlib.import_module(mod_name)
+        check_station = getattr(mod, func_name)
+    except AttributeError as exc:
+        raise ValidationError(str(exc))
+
 
 class Scrapper(models.Model):
     radio = models.ForeignKey(RadioStation, on_delete=models.CASCADE)
-    python_path = models.CharField(max_length=1000, blank=False)
+    python_path = models.CharField(max_length=1000, blank=False, validators=[validate_exists])
     priority = models.IntegerField(unique=True)
     used = models.IntegerField(default=0)
     success = models.IntegerField(default=0)
