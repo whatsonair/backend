@@ -18,6 +18,8 @@ psycopg2-binary = "*"
 django-dotenv = "*"
 django-cache-url = "*"
 django-redis = "*"
+gunicorn = "*"
+python-json-logger = "*"
 
 [requires]
 python_version = "3.6"

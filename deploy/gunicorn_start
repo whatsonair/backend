@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+NAME="onair"
+DJANGODIR=/home/ubuntu/src/onair-demo
+SOCKFILE=/home/ubuntu/run/onair.sock
+LOGDIR="$DJANGODIR/log"
+USER=ubuntu
+GROUP=ubuntu
+NUM_WORKERS=3
+DJANGO_WSGI_MODULE=onair.wsgi
+CONFIG_FILE="${DJANGODIR}/deploy/gunicorn_config.py"
+
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+cd $DJANGODIR
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Create the logs directory if it doesn't exist
+test -d $LOGDIR || mkdir -p $LOGDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+exec /home/ubuntu/.pyenv/versions/3.7.4/bin/pipenv run gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --config "$CONFIG_FILE" \
+  --name "$NAME" \
+  --workers $NUM_WORKERS \
+  --user=$USER --group=$GROUP \
+  --bind="unix:$SOCKFILE"
