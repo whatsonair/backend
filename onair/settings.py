@@ -37,6 +37,34 @@ class Settings(Configuration):
         'telegrambot',
     ]
     LANGUAGE_CODE = 'en-us'
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "loggers": {
+            "command_notify": {
+                "level": "DEBUG",
+                "handlers": ['console'],
+                "propagate": False
+            },
+            "scrappers": {
+                "level": "DEBUG",
+                "handlers": ['console'],
+                "propagate": False
+            }
+        },
+        "handlers": {
+            "console": {
+                "level": "DEBUG",
+                "class": "logging.StreamHandler",
+                "formatter": "simple"
+            }
+        },
+        "formatters": {
+            "simple": {
+                "format": "%(asctime)s [%(levelname)s] {%(module)s} %(message)s"
+            }
+        }
+    }
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'whitenoise.middleware.WhiteNoiseMiddleware',

@@ -45,7 +45,7 @@ def _radio_club_ua(station, stream):
                 if playlist_cache:
                     station_streams = json.loads(playlist_cache)
             except Exception as exc:
-                log.exception('Redis cache get attempt exception:')
+                log.exception('Failed to use redis cache when scrapping {}:{}. Continue without cache.'.format(station, stream))
                 redis_client = None
 
         if station_streams is None:
