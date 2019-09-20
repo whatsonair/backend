@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import xml.etree.ElementTree as ET
 
 import requests
 from bs4 import BeautifulSoup
@@ -231,3 +232,20 @@ def maximum_rock():
 
 def super_diskoteka_90s():
     return _maximum_radio('Супер дискотека 90-х')
+
+def _aristocrats(link):
+    resp = requests.get(link)
+    resp.raise_for_status()
+    playlist = ET.fromstring(resp.content)
+    artist = playlist.find('artist').attrib['title']
+    song = playlist.find('song').attrib['title']
+    return "{artist} - {song}".format(artist=artist, song=song)
+
+def aristocrats():
+    return _aristocrats('https://aristocrats.fm/service/nowplaying-aristocrats8.xml')
+
+def amusic():
+    return _aristocrats('https://aristocrats.fm/service/nowplaying-amusic8.xml')
+
+def ajazz():
+    return _aristocrats('https://aristocrats.fm/service/nowplaying-ajazz8.xml')
