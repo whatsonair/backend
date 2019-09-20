@@ -36,7 +36,7 @@ class Replier:
             - что бы получать оповещание когда песня в эфире, напишите /songonair песня
             - что бы получить список отслеживаемых песен, напишите /list
             - что бы перестать отслеживать песню: /stop песня
-            - что бы посмотреть список радио станций и песен в эфире: /onair
+            - что бы посмотреть список радио станций: /radios
             Вперед!
             
         """)
@@ -236,7 +236,7 @@ def telegram_webhook(request):
                         "action": "no",
                         "reason": "requested song not in the list"
                     })
-        elif text.startswith('/onair'):
+        elif text.startswith('/radios'):
             radios = []
             for i, scrapper in enumerate(Scrapper.objects.filter(radio__monitor=True).order_by('radio__name'), 1):
 
