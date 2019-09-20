@@ -16,20 +16,9 @@ class NotificationRequest(models.Model):
     request_text = models.CharField(max_length=255)
 
 
-class RadioStation(models.Model):
-    name = models.CharField(max_length=255, blank=False)
-    url = models.URLField()
-    monitor = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.name
-
-    @property
-    def n_scrappers(self):
-        return str(self.scrapper_set.count())
-
-
 def validate_exists(python_path):
+    if not python_path:
+        return
     try:
         function_string = python_path
         mod_name, func_name = function_string.rsplit('.', 1)
@@ -39,8 +28,26 @@ def validate_exists(python_path):
         raise ValidationError(str(exc))
 
 
+class RadioStation(models.Model):
+    name = models.CharField(max_length=255, blank=False)
+    url = models.URLField()
+    monitor = models.BooleanField(default=True)
+    scrapper = models.CharField(max_length=1000, null=True, validators=[validate_exists])
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def n_scrappers(self):
+        return str(self.scrapper_model.count())
+
+    @property
+    def scrapper_set(self):
+        return bool(self.scrapper)
+
+
 class Scrapper(models.Model):
-    radio = models.ForeignKey(RadioStation, on_delete=models.CASCADE)
+    radio = models.ForeignKey(RadioStation, on_delete=models.CASCADE, related_name='scrapper_model')
     python_path = models.CharField(max_length=1000, blank=False, validators=[validate_exists])
     used = models.IntegerField(default=0)
     success = models.IntegerField(default=0)

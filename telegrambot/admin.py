@@ -25,7 +25,7 @@ class ScrapperInline(admin.TabularInline):
 
 
 class RadioStationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'monitor', 'n_scrappers')
+    list_display = ('name', 'url', 'monitor', 'n_scrappers', 'scrapper_set')
     list_filter = ('monitor',)
     inlines = [
         ScrapperInline,
