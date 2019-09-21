@@ -21,7 +21,8 @@ class Settings(Configuration):
     ]
     AUTH_USER_MODEL = 'telegrambot.User'
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    CACHES = values.CacheURLValue('locmem://')
+
+
     DATABASES = values.DatabaseURLValue('sqlite:///db.sqlite3')
     # DOTENV = os.path.join(BASE_DIR, '.env')
     # SECURITY WARNING: don't run with debug turned on in production!
@@ -33,6 +34,8 @@ class Settings(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        # third party
+        'rest_framework',
         # local apps
         'telegrambot',
     ]
@@ -77,6 +80,10 @@ class Settings(Configuration):
     ]
     PREVENT_NOTIFICATION_REPEAT_TIMEOUT = values.PositiveIntegerValue(5 * 60)  # 5 mins
     ROOT_URLCONF = 'onair.urls'
+    REST_FRAMEWORK = {
+        'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+        'PAGE_SIZE': 10
+    }
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = '1)#=9)t+e=374nx2i*p-o$a_b7%zvreb1ghmxo21+iyh&_*+a9'
     STATIC_ROOT = values.Value(os.path.join(BASE_DIR, '..', 'staticfiles'))

@@ -20,6 +20,7 @@ django-cache-url = "*"
 django-redis = "*"
 gunicorn = "*"
 python-json-logger = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.6"

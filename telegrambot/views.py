@@ -10,7 +10,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+from rest_framework import viewsets
+
 from telegrambot.models import User, NotificationRequest, RadioStation, Scrapper
+from telegrambot.serializers import RadioStationSerializer
 
 
 def send_message(to, text):
@@ -257,3 +260,8 @@ def telegram_webhook(request):
     except Exception as exc:
         # return HttpResponseBadRequest('{}: {}'.format(type(exc).__name__, str(exc)))
         return HttpResponseBadRequest(traceback.format_exc())
+
+
+class RadioStationViewSet(viewsets.ModelViewSet):
+    queryset = RadioStation.objects.all()
+    serializer_class = RadioStationSerializer
