@@ -55,14 +55,13 @@ class Command(BaseCommand):
                             send_message(to=notif_request.user.telegram_chat_id,
                                          text="{radio}: {song}".format(song=air, radio=station.name))
                             cache.set(cache_key, 'notified', settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
-
-                        log.debug(
-                            "Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
-                                user=notif_request.user.telegram_chat_id,
-                                song=air,
-                                station=station.name,
-                                request=notif_request.request_text
-                            ))
+                            log.debug(
+                                "Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
+                                    user=notif_request.user.telegram_chat_id,
+                                    song=air,
+                                    station=station.name,
+                                    request=notif_request.request_text
+                                ))
                 except Exception:
                     log.exception("Exception when attempting to notify '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                                 user=notif_request.user.telegram_chat_id,
