@@ -21,8 +21,7 @@ class Settings(Configuration):
     ]
     AUTH_USER_MODEL = 'telegrambot.User'
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
+    CACHES = values.CacheURLValue('locmem://')
     DATABASES = values.DatabaseURLValue('sqlite:///db.sqlite3')
     # DOTENV = os.path.join(BASE_DIR, '.env')
     # SECURITY WARNING: don't run with debug turned on in production!
