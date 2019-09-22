@@ -14,18 +14,34 @@ except ModuleNotFoundError:
 log = logging.getLogger('scrappers')
 
 
-def _radio_i_ua(link):
-    try:
-        link = link.strip('/')
-        resp = requests.get('https://radio.i.ua/{}/'.format(link))
-        assert resp.status_code == 200, resp.status_code
-        soup = BeautifulSoup(resp.content, 'html.parser')
-        links = soup.find_all(href='/{}/archive/'.format(link), class_=None)
-        assert len(links) == 1, links
-        return links[0].text
-    except:
-        log.exception("Unexpected error while scapping i.ua {}:".format(link))
+def _aristocrats(link):
+    resp = requests.get(link)
+    resp.raise_for_status()
+    playlist = ET.fromstring(resp.content)
+    artist = playlist.find('artist').attrib['title']
+    song = playlist.find('song').attrib['title']
+    return "{artist} - {song}".format(artist=artist, song=song)
 
+def _maximum_radio(station):
+    # TODO: use onAirDate to bypass commercials
+    try:
+        resp = requests.get('https://maximum.fm/get-active-data/4/0')
+        resp.raise_for_status()
+        stations = resp.json()['stations']
+        playlist = None
+        for radio_station in stations:
+            if radio_station['name'] == station:
+                playlist = radio_station['songs']
+                break
+        if not playlist:
+            raise Exception("No playlist for station: '{}'".format(station))
+        current_song = playlist[0]
+        artists = " & ".join(artist['name'] for artist in current_song['artists'])
+        song = current_song['name']
+        return "{} - {}".format(artists, song)
+
+    except:
+        log.exception("Unexpected error in maximum scrapper:")
 
 def _radio_club_ua(station, stream):
 
@@ -86,73 +102,74 @@ def _radio_club_ua(station, stream):
     except:
         log.exception("Unexpected error in radio club ua scrapper:")
 
-
-def _maximum_radio(station):
-    # TODO: use onAirDate to bypass commercials
+def _radio_i_ua(link):
     try:
-        resp = requests.get('https://maximum.fm/get-active-data/4/0')
-        resp.raise_for_status()
-        stations = resp.json()['stations']
-        playlist = None
-        for radio_station in stations:
-            if radio_station['name'] == station:
-                playlist = radio_station['songs']
-                break
-        if not playlist:
-            raise Exception("No playlist for station: '{}'".format(station))
-        current_song = playlist[0]
-        artists = " & ".join(artist['name'] for artist in current_song['artists'])
-        song = current_song['name']
-        return "{} - {}".format(artists, song)
-
+        link = link.strip('/')
+        resp = requests.get('https://radio.i.ua/{}/'.format(link))
+        assert resp.status_code == 200, resp.status_code
+        soup = BeautifulSoup(resp.content, 'html.parser')
+        links = soup.find_all(href='/{}/archive/'.format(link), class_=None)
+        assert len(links) == 1, links
+        return links[0].text
     except:
-        log.exception("Unexpected error in maximum scrapper:")
+        log.exception("Unexpected error while scapping i.ua {}:".format(link))
 
-def russkoe_radio_ukraina():
-    return _radio_i_ua('russkoe.radio')
+def ajazz():
+    return _aristocrats('https://aristocrats.fm/service/nowplaying-ajazz8.xml')
 
-def nrj_ukraina():
-    result = _radio_club_ua('nrj', 'online')
-    if result:
-        return result
-    else:
-        return _radio_i_ua('nrj')
+def amusic():
+    return _aristocrats('https://aristocrats.fm/service/nowplaying-amusic8.xml')
 
-def kiss_fm():
-    return _radio_i_ua('kiss.fm')
+def aristocrats():
+    return _aristocrats('https://aristocrats.fm/service/nowplaying-aristocrats8.xml')
 
-def kexxx_fm():
-    return _radio_i_ua('keksfm')
+def avtoradio():
+    return _radio_club_ua('avtoradio', 'avtoradio')
+
+def big_radio():
+    return _radio_i_ua('bigradio.com.ua')
 
 def fm_109():
     return _radio_i_ua('109fmnet')
 
-def big_radio():
-    return _radio_i_ua('bigradio.com.ua')
+def hit_fm():
+    return _radio_i_ua('hit.fm')
+
+def jamfm():
+    return _radio_club_ua('jamfm', 'jamfm')
+
+def kexxx_fm():
+    return _radio_i_ua('keksfm')
+
+def kiss_fm():
+    return _radio_i_ua('kiss.fm')
+
+def loungefm():
+    return _radio_club_ua('loungefm', 'online')
+
+def loungefm_chillout():
+    return _radio_club_ua('loungefm', 'chillout')
+
+def maximum_hitiv():
+    return _maximum_radio('Максимум Хітів')
+
+def maximum_onair():
+    return _maximum_radio('ONAIR')
+
+def maximum_rock():
+    return _maximum_radio('Максимум Рок')
+
+def maximum_ukrainian():
+    return _maximum_radio('Максимум Українське')
+
+def melodia_fm():
+    return _radio_i_ua('melodiya')
 
 def metal_voice_radio():
     return _radio_i_ua('metalvoice')
 
 def mix_fm():
     return _radio_i_ua('vtsu.dance')
-
-def psy_radio():
-    return _radio_i_ua('psyradio')
-
-def radio_ex():
-    return _radio_i_ua('radioex')
-
-def rock_fm_ukraine():
-    return _radio_i_ua('prorock.online')
-
-def trance_is_star():
-    return _radio_i_ua('tranceisstar')
-
-def uafm():
-    return _radio_i_ua('uafm.km.ua')
-
-def melodia_fm():
-    return _radio_i_ua('melodiya')
 
 def nashe_radio():
     result = _radio_club_ua('nashe', 'nashe')
@@ -161,11 +178,18 @@ def nashe_radio():
     else:
         return _radio_i_ua('nashe.radio')
 
-def radio_vtsu():
-    return _radio_i_ua('vtsu.org.ua')
+def nrj_ukraina():
+    result = _radio_club_ua('nrj', 'online')
+    if result:
+        return result
+    else:
+        return _radio_i_ua('nrj')
 
-def radio_vecherniy_briz():
-    return _radio_i_ua('rpr.dp.ua')
+def psy_radio():
+    return _radio_i_ua('psyradio')
+
+def radio_ex():
+    return _radio_i_ua('radioex')
 
 def radio_pyatnitsa():
     result = _radio_club_ua('radiopyatnica', 'radiopyatnica')
@@ -174,37 +198,14 @@ def radio_pyatnitsa():
     else:
         return _radio_i_ua('radiopyatnica')
 
+def radio_vecherniy_briz():
+    return _radio_i_ua('rpr.dp.ua')
+
+def radio_vtsu():
+    return _radio_i_ua('vtsu.org.ua')
+
 def radio_z_kriyivki():
     return _radio_i_ua('kriyivki')
-
-def rock_radio_ua():
-    return _radio_i_ua('rockradio')
-
-def hit_fm():
-    return _radio_i_ua('hit.fm')
-
-def shanson():
-    try:
-        resp = requests.get('https://www.shanson.ua/Poisk-pesen')
-        assert resp.status_code == 200, resp.status_code
-        soup = BeautifulSoup(resp.content, 'html.parser')
-        song = soup.find(class_='play-online-song').text
-        singer = soup.find(class_='play-online-singer').text
-        return "{} - {}".format(singer, song)
-    except:
-        log.exception("Unexpected error while scapping www.shanson.ua:")
-
-def loungefm():
-    return _radio_club_ua('loungefm', 'online')
-
-def jamfm():
-    return _radio_club_ua('jamfm', 'jamfm')
-
-def avtoradio():
-    return _radio_club_ua('avtoradio', 'avtoradio')
-
-def loungefm_chillout():
-    return _radio_club_ua('loungefm', 'chillout')
 
 def radiorelax():
     try:
@@ -218,34 +219,32 @@ def radiorelax():
     except:
         log.exception("Unexpected error in radiorelax scrapper:")
 
-def maximum_onair():
-    return _maximum_radio('ONAIR')
+def rock_fm_ukraine():
+    return _radio_i_ua('prorock.online')
 
-def maximum_ukrainian():
-    return _maximum_radio('Максимум Українське')
+def rock_radio_ua():
+    return _radio_i_ua('rockradio')
 
-def maximum_hitiv():
-    return _maximum_radio('Максимум Хітів')
+def russkoe_radio_ukraina():
+    return _radio_i_ua('russkoe.radio')
 
-def maximum_rock():
-    return _maximum_radio('Максимум Рок')
+def shanson():
+    try:
+        resp = requests.get('https://www.shanson.ua/Poisk-pesen')
+        assert resp.status_code == 200, resp.status_code
+        soup = BeautifulSoup(resp.content, 'html.parser')
+        song = soup.find(class_='play-online-song').text
+        singer = soup.find(class_='play-online-singer').text
+        return "{} - {}".format(singer, song)
+    except:
+        log.exception("Unexpected error while scapping www.shanson.ua:")
 
 def super_diskoteka_90s():
     return _maximum_radio('Супер дискотека 90-х')
 
-def _aristocrats(link):
-    resp = requests.get(link)
-    resp.raise_for_status()
-    playlist = ET.fromstring(resp.content)
-    artist = playlist.find('artist').attrib['title']
-    song = playlist.find('song').attrib['title']
-    return "{artist} - {song}".format(artist=artist, song=song)
+def trance_is_star():
+    return _radio_i_ua('tranceisstar')
 
-def aristocrats():
-    return _aristocrats('https://aristocrats.fm/service/nowplaying-aristocrats8.xml')
+def uafm():
+    return _radio_i_ua('uafm.km.ua')
 
-def amusic():
-    return _aristocrats('https://aristocrats.fm/service/nowplaying-amusic8.xml')
-
-def ajazz():
-    return _aristocrats('https://aristocrats.fm/service/nowplaying-ajazz8.xml')
