@@ -39,7 +39,9 @@ class Command(BaseCommand):
                 log.exception('Exception in scrapper code {} for station {}'.format(station.scrapper, station.name))
                 continue
 
-            Playlist.objects.create(station=station, on_air=air)
+            latest = Playlist.objects.filter(station=station).latest('time')
+            if not latest or latest.on_air != air:
+                Playlist.objects.create(station=station, on_air=air)
 
             if not air:
                 log.warn("{}: {}".format(station.name, air))
