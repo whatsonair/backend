@@ -75,13 +75,13 @@ class Command(BaseCommand):
                             "Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                                 user=notif_request.user.telegram_chat_id,
                                 song=air,
-                                station=station.radio.name,
+                                station=station.name,
                                 request=notif_request.request_text
                             ))
                 except Exception:
                     log.exception("Exception when attempting to notify '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                                 user=notif_request.user.telegram_chat_id,
                                 song=air,
-                                station=station.radio.name,
+                                station=station.name,
                                 request=notif_request.request_text
                             ))
