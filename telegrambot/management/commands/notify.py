@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 from django.core.cache import cache
 from django.conf import settings
 
-from telegrambot.models import NotificationRequest, RadioStation
+from telegrambot.models import NotificationRequest, RadioStation, Playlist
 from telegrambot.views import send_message
 
 
@@ -38,6 +38,8 @@ class Command(BaseCommand):
             except Exception:
                 log.exception('Exception in scrapper code {} for station {}'.format(station.scrapper, station.name))
                 continue
+
+            Playlist.objects.create(station=station, on_air=air)
 
             if not air:
                 log.warn("{}: {}".format(station.name, air))
