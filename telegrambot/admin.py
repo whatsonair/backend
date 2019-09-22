@@ -1,7 +1,7 @@
 import importlib
 from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, NotificationRequest, RadioStation, Scrapper
+from .models import User, NotificationRequest, RadioStation, Scrapper, Playlist
 
 
 class UserAdmin(BaseUserAdmin):
@@ -52,7 +52,13 @@ class ScrapperAdmin(admin.ModelAdmin):
     trigger.short_description = 'Trigger scrapper'
 
 
+class PlaylistAdmin(admin.ModelAdmin):
+    search_fields = ('on_air', 'station__name')
+    list_display = ('time', 'station', 'on_air',)
+    list_filter = ('station__name',)
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(NotificationRequest, NotificationRequestAdmin)
 admin.site.register(RadioStation, RadioStationAdmin)
-admin.site.register(Scrapper, ScrapperAdmin)
+admin.site.register(Playlist, PlaylistAdmin)
