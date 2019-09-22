@@ -17,13 +17,6 @@ class Command(BaseCommand):
     help = 'Check radio stations and notify telegram users'
 
     def handle(self, *args, **options):
-        use_cache = True
-        try:
-            cache.get('connection_test')
-        except Exception:
-            log.exception("Can't connect to cache backend")
-            use_cache = False
-
         if NotificationRequest.objects.count() == 0:
             log.info('No notification requests')
 
@@ -56,21 +49,13 @@ class Command(BaseCommand):
             for notif_request in NotificationRequest.objects.filter(user__is_active=True):
                 try:
                     if notif_request.request_text in air.lower():
-                        if use_cache:
-                            cache_key = b64encode("{}{}-{}".format(station.name, air, notif_request.user_id).encode('utf-8'))
+                        cache_key = b64encode("{}{}-{}".format(station.name, air, notif_request.user_id).encode('utf-8'))
 
-                            try:
-                                if not cache.get(cache_key):
-                                    send_message(to=notif_request.user.telegram_chat_id,
-                                                 text="{radio}: {song}".format(song=air, radio=station.name))
-                                    cache.set(cache_key, 'notified', settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
-                            except Exception:
-                                log.exception("Can't connect to cache backend")
-                                send_message(to=notif_request.user.telegram_chat_id,
-                                             text="{radio}: {song}".format(song=air, radio=station.name))
-                        else:
+                        if not cache.get(cache_key):
                             send_message(to=notif_request.user.telegram_chat_id,
                                          text="{radio}: {song}".format(song=air, radio=station.name))
+                            cache.set(cache_key, 'notified', settings.PREVENT_NOTIFICATION_REPEAT_TIMEOUT)
+
                         log.debug(
                             "Notified user: '{user}' about '{song}' playing on radio '{station}', request text: '{request}'".format(
                                 user=notif_request.user.telegram_chat_id,
