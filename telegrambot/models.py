@@ -46,6 +46,12 @@ class RadioStation(models.Model):
         return bool(self.scrapper)
 
 
+class Playlist(models.Model):
+    time = models.DateTimeField(auto_now_add=True)
+    station = models.ForeignKey(RadioStation, on_delete=models.PROTECT)
+    on_air = models.CharField(max_length=1000, null=True)
+
+
 class Scrapper(models.Model):
     radio = models.ForeignKey(RadioStation, on_delete=models.CASCADE, related_name='scrapper_model')
     python_path = models.CharField(max_length=1000, blank=False, validators=[validate_exists])
