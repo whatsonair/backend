@@ -1,7 +1,6 @@
-import importlib
-from django.contrib import admin, messages
+from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User, NotificationRequest, RadioStation, Scrapper, Playlist
+from .models import User, NotificationRequest, RadioStation, Playlist
 
 
 class UserAdmin(BaseUserAdmin):
@@ -17,39 +16,10 @@ class NotificationRequestAdmin(admin.ModelAdmin):
     list_filter = ('user',)
 
 
-class ScrapperInline(admin.TabularInline):
-    model = Scrapper
-    fields = ('python_path', 'used', 'success_rate')
-    readonly_fields = ('used', 'success_rate',)
-    extra = True
-
-
 class RadioStationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'monitor', 'n_scrappers', 'scrapper_set')
+    list_display = ('name', 'url', 'monitor', 'scrapper_set')
     list_filter = ('monitor',)
-    inlines = [
-        ScrapperInline,
-    ]
     search_fields = ('name', 'url')
-
-
-class ScrapperAdmin(admin.ModelAdmin):
-    search_fields = ('radio__name', 'python_path')
-    list_display = ('radio', 'python_path', 'used', 'success_rate',)
-    actions = ['trigger']
-
-    def trigger(self, request, queryset):
-        for scrapper in queryset:
-            try:
-                function_string = scrapper.python_path
-                mod_name, func_name = function_string.rsplit('.', 1)
-                mod = importlib.import_module(mod_name)
-                func = getattr(mod, func_name)
-                result = func()
-                self.message_user(request, '{}: {}'.format(scrapper, result))
-            except Exception as exc:
-                self.message_user(request, '{}: {}: {}'.format(scrapper, type(exc).__name__, exc), messages.ERROR)
-    trigger.short_description = 'Trigger scrapper'
 
 
 class PlaylistAdmin(admin.ModelAdmin):

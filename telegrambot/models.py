@@ -38,10 +38,6 @@ class RadioStation(models.Model):
         return self.name
 
     @property
-    def n_scrappers(self):
-        return str(self.scrapper_model.count())
-
-    @property
     def scrapper_set(self):
         return bool(self.scrapper)
 
@@ -50,23 +46,3 @@ class Playlist(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     station = models.ForeignKey(RadioStation, on_delete=models.PROTECT)
     on_air = models.CharField(max_length=1000, null=True)
-
-
-class Scrapper(models.Model):
-    radio = models.ForeignKey(RadioStation, on_delete=models.CASCADE, related_name='scrapper_model')
-    python_path = models.CharField(max_length=1000, blank=False, validators=[validate_exists])
-    used = models.IntegerField(default=0)
-    success = models.IntegerField(default=0)
-
-    class Meta:
-        unique_together = ('radio', 'python_path')
-
-    def __str__(self):
-        return self.python_path
-
-    @property
-    def success_rate(self):
-        if self.used:
-            return "{:.1%}".format(self.success / self.used)
-        else:
-            return "0%"

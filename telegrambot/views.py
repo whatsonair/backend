@@ -12,7 +12,7 @@ from rest_framework import viewsets
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from telegrambot.models import User, NotificationRequest, RadioStation, Scrapper
+from telegrambot.models import User, NotificationRequest, RadioStation
 from telegrambot.serializers import RadioStationSerializer
 
 
@@ -241,9 +241,9 @@ def telegram_webhook(request):
                     })
         elif text.startswith('/radios'):
             radios = []
-            for i, scrapper in enumerate(Scrapper.objects.filter(radio__monitor=True).order_by('radio__name'), 1):
+            for i, station in enumerate(RadioStation.objects.filter(radio__monitor=True).order_by('name'), 1):
 
-                radios.append("{}: {}".format(i, scrapper.radio.name))
+                radios.append("{}: {}".format(i, station.name))
 
             replier.send_message('\n'.join(radios))
             return JsonResponse({
