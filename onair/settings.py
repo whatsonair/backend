@@ -81,7 +81,8 @@ class Settings(Configuration):
     ROOT_URLCONF = 'onair.urls'
     REST_FRAMEWORK = {
         'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-        'PAGE_SIZE': 10
+        'PAGE_SIZE': 10,
+        'URL_FIELD_NAME': 'href',
     }
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = '1)#=9)t+e=374nx2i*p-o$a_b7%zvreb1ghmxo21+iyh&_*+a9'
