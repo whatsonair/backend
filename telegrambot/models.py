@@ -34,6 +34,9 @@ class RadioStation(models.Model):
     monitor = models.BooleanField(default=True)
     scrapper = models.CharField(max_length=1000, null=True, validators=[validate_exists])
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
 
